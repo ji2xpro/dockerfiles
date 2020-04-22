@@ -3,8 +3,6 @@
 
 > 持续更新中...
 
-[toc]
-
 # 1. 目录结构
 ```
 docker-alpine
@@ -40,28 +38,28 @@ docker-compose up -d
 
 除此之外，常见的docker-compose命令如下：
 ```
-#停止运行并移除容器
+# 停止运行并移除容器
 docker-compose down
 
-#启动单个服务
+# 启动单个服务
 docker-compose up -d 服务名
 
-#查看当前运行的服务
+# 查看当前运行的服务
 docker-compose ps
 
-#构建镜像，--no-cache表示不用缓存，否则在重新编辑Dockerfile后再build可能会直接使用缓存而导致新编辑内容不生效
+# 构建镜像，--no-cache表示不用缓存，否则在重新编辑Dockerfile后再build可能会直接使用缓存而导致新编辑内容不生效
 docker-compose build --no-cache
 
-#查看镜像
+# 查看镜像
 docker-compose images
 
-#查看日志
+# 查看日志
 docker-compose logs
 
-#启动/停止服务
+# 启动/停止服务
 docker-compose start/stop 服务名
 
-#拉取镜像
+# 拉取镜像
 docker-compose pull 镜像名
 ```
 

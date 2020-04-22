@@ -1,0 +1,25 @@
+# docker-compose的版本
+version: "3"
+# 定义服务
+services:
+  # 服务名称，可随意定义
+  redis:
+    build:
+      # dockerfile的路径
+      context: ${DOCKER_FILE}/redis
+      # dockerfile的名称
+      dockerfile: ${dockerfile}
+    hostname: redis  
+    restart: always
+    # 容器名称
+    container_name: redis
+    networks:
+      - redis
+    # 端口号
+    ports:
+      - "56379:6379"
+    # 该选项中的命令会覆盖Dockfile中的CMD中的命令.lower_case_table_names参数是为了表名不区分大小写，default-authentication-plugin是8.0中密码加密策略不同带来的链接问题，如果不用8.0可不加此选项
+    # command: 
+    #   redis-server /etc/redis.conf
+networks:
+  redis:

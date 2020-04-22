@@ -1,0 +1,35 @@
+# docker-compose的版本
+version: "3"
+# 定义服务
+services:
+  # 服务名称，可随意定义
+  mysql:
+    build:
+      # dockerfile的路径
+      context: ${DOCKER_FILE}/mysql/
+      # dockerfile的名称
+      dockerfile: ${dockerfile}
+    # image: leafney/alpine-mariadb:latest
+    hostname: mysql
+    restart: always
+    # 容器名称
+    container_name: mysql
+    networks:
+      - mysql
+    # 相当于docker run命令中的-e
+    environment: 
+      - MYSQL_ROOT_PWD=123
+      - MYSQL_USER=dev
+      - MYSQL_USER_PWD=dev
+      #- MYSQL_USER_DB=userdb
+    # 相当于docker run -v的作用
+    # volumes:
+    #   - $PWD/mysql_data:/var/lib/mysql
+    # 端口号
+    ports:
+      - "53306:3306"
+    # 该选项中的命令会覆盖Dockfile中的CMD中的命令.lower_case_table_names参数是为了表名不区分大小写，default-authentication-plugin是8.0中密码加密策略不同带来的链接问题，如果不用8.0可不加此选项
+    # command: 
+    #   mysqld --lower_case_table_names=1 --default-authentication-plugin=mysql_native_password
+networks:
+  mysql:

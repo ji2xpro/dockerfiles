@@ -1,0 +1,23 @@
+# docker-compose的版本
+version: "3"
+# 定义服务
+services:
+  # 服务名称，可随意定义
+  nginx:
+    build:
+      # dockerfile的路径(推荐使用源码安装nginx_byCode)
+      context: ${DOCKER_FILE}/nginx/nginx_byCode
+      # dockerfile的名称
+      dockerfile: ${dockerfile}
+    hostname: nginx
+    restart: always
+    # 容器名称
+    container_name: nginx
+    networks:
+      - nginx
+    working_dir: /etc/nginx
+    # 端口号
+    ports:
+      - "81:80"
+networks:
+  nginx:

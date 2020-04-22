@@ -1,0 +1,105 @@
+# # docker-compose的版本
+# version: "3"
+# # 定义服务
+# services:
+#   # ===================================mysql===================================
+#   # 服务名称，可随意定义
+#   mysql:
+#     build:
+#       # dockerfile的路径
+#       context: ./dockerfile/mysql
+#       # dockerfile的名称
+#       dockerfile: Dockerfile
+#     # image: leafney/alpine-mariadb:latest
+#     hostname: mysql
+#     restart: always
+#     # 容器名称
+#     container_name: mysql
+#     networks:
+#       - mysql
+#     # 相当于docker run命令中的-e
+#     environment: 
+#       - MYSQL_ROOT_PWD=123
+#       - MYSQL_USER=dev
+#       - MYSQL_USER_PWD=dev
+#       #- MYSQL_USER_DB=userdb
+#     # 相当于docker run -v的作用
+#     # volumes:
+#     #   - $PWD/mysql_data:/var/lib/mysql
+#     # 端口号
+#     ports:
+#       - "53306:3306"
+#     # 该选项中的命令会覆盖Dockfile中的CMD中的命令.lower_case_table_names参数是为了表名不区分大小写，default-authentication-plugin是8.0中密码加密策略不同带来的链接问题，如果不用8.0可不加此选项
+#     # command: 
+#     #   mysqld --lower_case_table_names=1 --default-authentication-plugin=mysql_native_password
+#   # # ===================================redis===================================
+#   # redis:
+#   #   build:
+#   #     # dockerfile的路径
+#   #     context: ./dockerfile/redis
+#   #     # dockerfile的名称
+#   #     dockerfile: Dockerfile
+#   #   hostname: redis  
+#   #   restart: always
+#   #   # 容器名称
+#   #   container_name: redis
+#   #   networks:
+#   #     - redis
+#   #   # 端口号
+#   #   ports:
+#   #     - "56379:6379"
+#   #   # 该选项中的命令会覆盖Dockfile中的CMD中的命令.lower_case_table_names参数是为了表名不区分大小写，default-authentication-plugin是8.0中密码加密策略不同带来的链接问题，如果不用8.0可不加此选项
+#   #   # command: 
+#   #   #   redis-server /etc/redis.conf
+#   # # ===================================rabbitmq===================================
+#   # rabbitmq:
+#   #   # build:
+#   #     # # dockerfile暂时有问题，需要改
+#   #     # # dockerfile的路径
+#   #     # context: ./dockerfile/rabbitmq
+#   #     # # dockerfile的名称
+#   #     # dockerfile: Dockerfile
+#   #   image: rabbitmq:management-alpine
+#   #   hostname: rabbitmq
+#   #   restart: always
+#   #   # 容器名称
+#   #   container_name: rabbitmq
+#   #   networks:
+#   #     - rabbitmq
+#   #   # 相当于docker run命令中的-e
+#   #   environment: 
+#   #     - RABBITMQ_DEFAULT_USER=admin
+#   #     - RABBITMQ_DEFAULT_PASS=admin
+#   #     # - RMQ_PWD=dev
+#   #   # 相当于docker run -v的作用
+#   #   # volumes:
+#   #   #   - $PWD/mysql_data:/var/lib/mysql
+#   #       # - ./data:/var/lib/rabbitmq
+#   #   # 端口号
+#   #   ports:
+#   #     - "15672:15672"
+#   #     - "5672:5672"
+#   #   logging:
+#   #     driver: "json-file"
+#   #     options:
+#   #       max-size: "200k"
+#   #       max-file: "10"
+#   # # ===================================nginx===================================
+#   # nginx:
+#   #   build:
+#   #     # dockerfile的路径(推荐使用源码安装nginx_byCode)
+#   #     context: ./dockerfile/nginx/nginx_byCode
+#   #     # dockerfile的名称
+#   #     dockerfile: Dockerfile
+#   #   hostname: nginx
+#   #   restart: always
+#   #   # 容器名称
+#   #   container_name: nginx
+#   #   working_dir: /etc/nginx
+#   #   # 端口号
+#   #   ports:
+#   #     - "81:80"
+# networks:
+#   mysql:
+#   redis:
+#   rabbitmq:

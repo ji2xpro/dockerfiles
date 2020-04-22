@@ -1,0 +1,39 @@
+# docker-compose的版本
+version: "3"
+# 定义服务
+services:
+  # 服务名称，可随意定义
+  rabbitmq:
+    # build:
+      # # dockerfile暂时有问题，需要改
+      # # dockerfile的路径
+      # context: ./dockerfile/rabbitmq
+      # # dockerfile的名称
+      # dockerfile: Dockerfile
+    image: rabbitmq:management-alpine
+    hostname: rabbitmq
+    restart: always
+    # 容器名称
+    container_name: rabbitmq
+    networks:
+      - rabbitmq
+    # 相当于docker run命令中的-e
+    environment: 
+      - RABBITMQ_DEFAULT_USER=admin
+      - RABBITMQ_DEFAULT_PASS=admin
+      # - RMQ_PWD=dev
+    # 相当于docker run -v的作用
+    # volumes:
+    #   - $PWD/mysql_data:/var/lib/mysql
+        # - ./data:/var/lib/rabbitmq
+    # 端口号
+    ports:
+      - "15672:15672"
+      - "5672:5672"
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "200k"
+        max-file: "10"
+networks:
+  rabbitmq:
